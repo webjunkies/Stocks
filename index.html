@@ -1,56 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
 <body>
 
-<h1>JavaScript Can Change Images</h1>
-
-<img id="myImage" onclick="changeImage()" src="pic_bulboff.gif" width="100" height="180">
-
-<p>Click the light bulb to turn on/off the light.</p>
-
-<script>
-function changeImage() {
-    var image = document.getElementById('myImage');
-    if (image.src.match("bulbon")) 
-    {
-        image.src = "pic_bulboff.gif";
-        console.log("pressed me");
-    } else {
-        image.src = "pic_bulbon.gif";
-    }
-    image.addEventListener("click", function(){ console.log("Hello World!"); });
-}
-</script>
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
 
 </body>
+</head>
 </html>
-
-
-
-
-
-
-<!--  
-<!DOCTYPE HTML>
-<canvas id="canvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
-
-<script>
-    var canvas = document.getElementById("canvas").getContext("2d");
-    
-    canvas.font = '30px Arial';
-    canvas.fillStyle = 'red';
-    
-    setInterval(update, 40);
-    
-    function update()
-    {
-        canvas.fillStyle = 'white';
-        canvas.fillRect(0,0,500,500);
-        canvas.fillStyle = 'red';
-        canvas.fillText('hello', 50, 50);
-        canvas.fillRect(200, 200, 100, 100);
-    }
-    canvas.addEventListener("click", function(){ console.log("Hello World!"); });
-    
-</script>
--->
