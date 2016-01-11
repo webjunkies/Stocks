@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Game</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" source="script.js"></script>
     </head>
     <body>
-        <div id="investments" class="investments" style="color:#0000FF">
-            <h1><center>Investments</center></h1>
+        <div class="output-container">
+            <div>Amount: <span id="amount"></span></div>
         </div>
-        <div id="employees" class="employees" style="color:#0000FF">
-            <h1><center>Employees</center></h1>
+        <div class="investments">
+            <p>
+                <button id="investment-button" onclick="click();">Investments</button><button                        id="money-button" onclick="click();">Money</button>
+            </p>
+            <p>
+                <button id="employees-button" onclick="click();">Employees</button><button                            id="profile-button" onclick="click();">Profile</button>
+            </p>
+            <p>
+                <button id="upgrades-button" onclick="click();">Upgrades<button id="options-button"                  onclick="click();">Options</button></button>
+            </p>
+            <p>
+                <button id="add-button" onclick="add();">add</button>
+            </p>
         </div>
-        <div id="upgrades" class="upgrades" style="color:#0000FF">
-            <h1><center>Upgrades</center></h1>
-        </div>
-        <div id="money" class="money" style="color:#0000FF">
-            <h1><center>Money</center></h1>
-        </div>
-        <div id="profile" class="profile" style="color:#0000FF">
-            <h1><center>Name of Business</center></h1>
-            <img src="http://static.ddmcdn.com/gif/koala-bear.jpg" alt="Mountain View" align="middle" style="width:304px;height:228px;">
-        </div>
-        <div id="options" class="options" style="color:#0000FF">
-            <h1><center>Options</center></h1>
-        </div>
-        <div id="clear"></div>
         <footer>
             <p>Created by: Olivia Mark and Jacob Cox | Contact us: <a href="mailto:dummyemail">
             dummyemail</a>.</p>
