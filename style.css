@@ -9,11 +9,27 @@ p  {
     font-size: 160%;
 }
 div {
-    width: 300px;
-    padding: 25px;
-    border: 25px solid navy;
-    margin: 25px;
+    position: fixed;
+    bottom: 250;
+    right: 0;
+    width: 500px;
+    border: 10px solid #73AD21;
+    margin: 10px;
 }
+
+.investments {
+    position: fixed;
+    top: 550;
+    right: 450;
+    border: 10px solid #73AD21;
+}
+.emmployees {
+    position: fixed;
+    top: 550;
+    right: 450;
+    border: 10px solid #73AD21;
+}
+
 <a href="#" class="myButton">green</a>
 
 .myButton {
