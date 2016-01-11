@@ -8,39 +8,22 @@ p  {
     font-family: courier;
     font-size: 160%;
 }
-.investments button {
+/*.investments button {
     width: 200px;
     height: 50px;
     font-size: 25px;
     padding: 10px;
     background-color:crimson;
     border: none;
-}
+}*/
 
-.nav-left button{
+button{
     width: 200px;
     height: 50px;
     font-size: 25px;
     padding: 5px;
-    background-color:crimson;
+    background-color:orange;
     border: none;
-    float:left;
 }
 
-.nav-right button{
-    width: 200px;
-    height: 50px;
-    font-size: 25px;
-    padding: 5px;
-    background-color:crimson;
-    border: none;
-    float:right;
-}
 
-#footer {
-    position: absolute;
-    bottom: 0;
-    width: 644px;
-    height: 20px;
-    margin: 0 auto;
-}
