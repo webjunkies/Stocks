@@ -2,43 +2,78 @@
 <html>
     <head>
         <title>Game</title>
+        <script type="text/javascript" src="script.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
-<<<<<<< HEAD
-        <script type="text/javascript" source="script.js"></script>
     </head>
-    <body>
+    <body onload="click();">
         <div class="output-container">
-            <div>Amount: <span id="amount"></span></div>
-=======
-        <script src="functions.js"></script>
-    </head>
-    <body>
-        <canvas id="canvas" width="1500" height="100" style="Border:1px solid #000000;"></canvas>
-        <script>
-            var canvas = document.getElementById("canvas").getContext("2d");
-        </script>
-        <div style="color:#0000FF">
-            <h1>string1</h1>
-        <div id="investments" class="investments" style="color:#0000FF">
-            <h1><center>Investments</center></h1>
->>>>>>> origin/master
+            <div>Amount: <span id="amount-display"></span></div>
         </div>
-        <div class="investments">
-            <p>
-                <button id="investment-button" onclick="click();">Investments</button><button                        id="money-button" onclick="click();">Money</button>
-            </p>
-            <p>
-                <button id="employees-button" onclick="click();">Employees</button><button                            id="profile-button" onclick="click();">Profile</button>
-            </p>
-            <p>
-                <button id="upgrades-button" onclick="click();">Upgrades<button id="options-button"                  onclick="click();">Options</button></button>
-            </p>
-            <p>
-                <button id="add-button" onclick="add();">add</button>
-            </p>
+        
+        
+        <!-- columns divs, float left, no margin so there is no space between column, width=1/3 -->
+        <div id="column1" style="float:left; margin:0; width:33%;">
+            <p><button id="investment-button" onclick="addAmount();">+ <span id="add-amount"></span></button></p>
+            <p><button id="employees-button" onclick="click();">Employees</button></p>
         </div>
+
+        <div id="column2" style="float:left; margin:0;width:33%;">
+            <div id="dynamic-display">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies bibendum enim, sed fermentum lorem rutrum eu. Proin consequat quam eget odio ultrices dignissim. Vestibulum quis cursus est. Nunc suscipit nibh in purus gravida, id interdum lorem tristique. Integer semper sollicitudin erat sed rutrum. Praesent scelerisque odio nunc, sed posuere odio ultrices id. Etiam blandit ex pulvinar congue maximus. Morbi euismod mi a libero vulputate, tempus vehicula tellus vulputate. Integer a sollicitudin odio, at suscipit diam. Nulla tempor a urna eu condimentum.
+
+Fusce aliquam, nibh id ultricies imperdiet, nunc magna scelerisque mi, ac accumsan enim ipsum id ante. Curabitur pellentesque ex enim, id maximus lectus dapibus ac. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam porttitor neque in dolor rhoncus eleifend. Curabitur dictum augue ac ante semper vestibulum. Quisque fermentum eu enim vel mattis. Nam sed diam sit amet nisl convallis ultrices. Vivamus a dui tempus, auctor orci sit amet, ultrices orci. Nunc quis arcu in ex rutrum feugiat non finibus magna. Mauris nisi dui, viverra eleifend tincidunt eu, venenatis vitae est. Donec sed tortor purus. Mauris pharetra justo arcu, eget condimentum ante fringilla ac. Aliquam consequat nunc sapien, sed auctor ante dictum a. Sed auctor mollis lectus vel fermentum. Aenean ut rutrum dui, ornare pellentesque neque. Cras hendrerit enim vel justo sollicitudin, quis tempor augue pulvinar.
+
+Pellentesque et euismod odio. Curabitur nec orci viverra, facilisis urna at, euismod arcu. Integer congue lobortis lacus, id tempor purus venenatis sit amet. Etiam hendrerit consequat tortor in varius. Aenean a finibus arcu. In rhoncus elit vel turpis ultricies, sed faucibus neque tincidunt. Suspendisse ut bibendum justo. Maecenas volutpat congue imperdiet. Aenean venenatis sollicitudin nunc eu fringilla. Proin at nisi dolor. Phasellus maximus ut massa nec dictum. Ut ut efficitur lacus. Aenean non libero ante. Donec sodales tincidunt sem, eu vehicula justo dapibus sed. Praesent efficitur tempor gravida.
+
+Mauris lobortis suscipit leo, ut semper lacus sodales malesuada. Nulla eu sapien eros. Nulla ornare, elit posuere iaculis interdum, arcu risus commodo velit, vel tempus ante arcu et urna. Sed et augue a eros luctus accumsan a ac libero. In erat lorem, imperdiet non lectus id, gravida pretium ligula. Proin pulvinar aliquet neque, euismod auctor eros accumsan et. Proin mattis purus at aliquet lacinia. In at ex non nisi ornare sodales. Curabitur gravida dolor in purus iaculis placerat.
+
+Maecenas vehicula, nisl quis pellentesque pharetra, lorem dui semper sapien, in eleifend nulla dui convallis orci. Aliquam erat volutpat. Nulla tempor lorem eu ultrices accumsan. Pellentesque blandit sapien at erat feugiat, eu luctus dolor pretium. Phasellus pharetra lobortis tortor a consectetur. Aenean in vehicula orci. Duis blandit egestas nunc id ullamcorper. Mauris a consectetur purus. Proin congue velit aliquam aliquam pulvinar. Nam nisl lorem, facilisis quis accumsan hendrerit, fermentum sed ex. Suspendisse potenti. Sed tempor vulputate dolor, vitae mattis enim malesuada et.
+                </p>
+            </div>
+        </div>
+
+        <div id="column3" style="float:left; margin:0;width:33%">
+            <p><button id="money-button" onclick="click();">Money</button></p>
+            <p><button id="profile-button" onclick="click();">Profile</button></p>
+        </div>
+        
+        
+        
+        <!--<div class="nav-left">
+             <button id="investment-button" onclick="addAmount();">+ <span id="add-amount"></span></button>
+        </div>
+        <div class="nav-right">
+            <button id="money-button" onclick="click();">Money</button>
+        </div>
+        <div class="nav-left">
+            <p>
+                <button id="employees-button" onclick="click();">Employees</button>
+            </p>
+        </div>-->
+        
+        
+        
+        <!--<div class="nav-left">
+            <p><button id="investment-button" onclick="addAmount();">+ <span id="add-amount"></span></button></p>
+            <p><button id="employees-button" onclick="click();">Employees</button></p>
+            <p><button id="upgrades-button" onclick="click();">Upgrades</button></p>
+        </div>
+        <div class="nav-right">
+            <p><button id="money-button" onclick="click();">Money</button></p>
+            <p><button id="profile-button" onclick="click();">Profile</button></p>
+            <p><button id="options-button" onclick="click();">Options</button></p>
+        </div>-->
+        
+        
+        
+        
+        
+
         <footer>
-            <p>Created by: Olivia Mark and Jacob Cox | Contact us: <a href="mailto:dummyemail">dummyemail</a>.</p>
+            <p>&copy; 2016 Olivia Mark and Jacob Cox | Contact us: <a href="mailto:dummyemail">dummyemail</a>.</p>
         </footer>
     </body>
 </html>
+
+       
