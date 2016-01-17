@@ -1,8 +1,11 @@
+<!--This is the main File in the game "Stock Piler", it is the first thing called and is written by Jacob Cox in cooperation with Ian Warshaw and Olivia Mark-->
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Game</title>
         <script src="button.js"></script>
+        <script src="game.js"></script>
     </head>
     <body>
         <canvas id="canvas" style="border:0px"></canvas>
@@ -11,46 +14,22 @@
     <script>
         var canvas = null;
         var context = null;
-        var x = 0, y = 0;
-        var button = null;
+        var game = null;
+        var error = 7;
         
+        //Sets up the whole game
         setup = function(){
             canvas = document.getElementById("canvas");
             context = canvas.getContext("2d");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            canvas.addEventListener("mousedown", event);
-            button = new Button(0, 0, 100, 100, "hello");
-            x = 0;
-            y = 0;
-        }
-         
-        update = function(){
-            x++;
-            y++;
-            
-        }
-        
-        render = function(){
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            button.render(context);
-        }
-        
-        run = function(){
-            setInterval(update, 1000);
-            setInterval(render, 1000 / 60);
-        }
-        
-        event = function(e){
-            mousex = e.pageX - 7;
-            mousey = e.pageY - 7;
-            console.log("x: " + e.clientX + " Y: " + e.clientY);
-            button.event(mousex, mousey);
+            game = new Game(canvas, context);
+            //calls game.setup (setting up the rest of the game)
+            game.setup(canvas, context, error);
         }
         
         setup();
-        run();
-        
+        game.run();
     </script>
 </html>
 
