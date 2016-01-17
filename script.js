@@ -1,5 +1,33 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //variables
-var amount = 0, amountFactor = 1;
+/*var amount = 0, amountFactor = 1;
 
 //functions
 function click(){
@@ -20,4 +48,4 @@ function addAmount(){
     }
     document.getElementById('amount-display').innerHTML = amount;
     document.getElementById('add-amount').innerHTML = amountFactor + 1 + " cost: " + ((amountFactor + 1) + (amountFactor + 1));
-};
+};*/

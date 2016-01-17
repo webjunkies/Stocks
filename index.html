@@ -3,79 +3,50 @@
     <head>
         <title>Game</title>
         <script type="text/javascript" src="script.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <!--<script type="text/javascript" src="game.js"></script>-->
+        <!--<script type="text/javascript" src="uiObject.js"></script>-->
+        <script type="text/javascript" src="button.js"></script>
+        <!--<link rel="stylesheet" type="text/css" href="style.css">-->
     </head>
-    <body onload="click();">
-        <div id="main-body">
-            <div class="output-container">
-                <div id="amount-text">Amount: <span id="amount-display"></span></div>
-            </div>
-            <!-- columns divs, float left, no margin so there is no space between column, width=1/3 -->
-            <div id="column1" style="float:left; margin:0; width:25%;">
-                <p><button id="work-button" onclick="location.href= 'work_tab.html';">Work</button></p>
-                <p><button id="add-button" onclick="add();">Click</button></p>
-                <p><button id="upgrades-button" onclick="click();">Upgrades</button></p>
-            </div>
-            <div id="column2" style="float:left; margin:0;width:50%;">
-                <div id="dynamic-display">
-                    <p>
-
-                    </p>
-                </div>
-            </div>
-
-            <div id="column3" style="float:left; margin:0;width:25%">
-                <p><button id="money-button" onclick="click();">Money</button></p>
-                <p><button id="profile-button" onclick="click();">Profile</button></p>
-                <p><button id="options-button" onclick="click();">Options</button></p>
-            </div>
-        </div><!--END OF MAIN BODY-->
-        <div id="footer" margin:10px>
-            <footer>
-            <!--<p>&copy; 2016 Olivia Mark, Ian Warshaw, Jacob Cox.</p>-->
-            </footer>
-        </div> <!--END OF FOOTER-->
-        
-        
-        
-        
-
-       
+    <body>
+        <canvas id="canvas"></canvas>
     </body>
+    
+    <script>
+        var canvas = null;
+        var context = null;
+        var x, y, running;
+        
+        setup = function(){
+            canvas = document.getElementById("canvas");
+            context = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            //canvas.addEventListener("mousedown", mouseDown, false);
+            //context.fillRect(20, 20, 200, 200);
+            /*var game = new GameEngine(canvas, 60);
+			game.startGame(context);*/
+			//setInterval(runGame, 100);
+
+            var button = new Button("Hello", 10, 10, 100, 100);
+            button.render(canvas);
+			
+        }
+        
+        /*mouseDown = function(event){
+            x = event.pageX;
+            y = event.pageY;
+            context.fillStyle="#FF0000";
+            context.fillRect(x, y, 200, 200);
+        }
+		
+		runGame = function(){
+			context.clearRect(0, 0, canvas.width, canvas.height);
+		}*/
+            
+        setup();
+    </script>
 </html>
 
-
-
-
-
-
-
-
-
-
- <!--<div class="nav-left">
-             <button id="investment-button" onclick="addAmount();">+ <span id="add-amount"></span></button>
-        </div>
-        <div class="nav-right">
-            <button id="money-button" onclick="click();">Money</button>
-        </div>
-        <div class="nav-left">
-            <p>
-                <button id="employees-button" onclick="click();">Employees</button>
-            </p>
-        </div>-->
-        
-        
-        
-        <!--<div class="nav-left">
-            <p><button id="investment-button" onclick="addAmount();">+ <span id="add-amount"></span></button></p>
-            <p><button id="employees-button" onclick="click();">Employees</button></p>
-            <p><button id="upgrades-button" onclick="click();">Upgrades</button></p>
-        </div>
-        <div class="nav-right">
-            <p><button id="money-button" onclick="click();">Money</button></p>
-            <p><button id="profile-button" onclick="click();">Profile</button></p>
-            <p><button id="options-button" onclick="click();">Options</button></p>
-        </div>-->
 
        
