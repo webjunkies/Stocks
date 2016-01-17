@@ -2,49 +2,55 @@
 <html>
     <head>
         <title>Game</title>
-        <script type="text/javascript" src="script.js"></script>
-        <!--<script type="text/javascript" src="game.js"></script>-->
-        <!--<script type="text/javascript" src="uiObject.js"></script>-->
-        <script type="text/javascript" src="button.js"></script>
-        <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+        <script src="button.js"></script>
     </head>
     <body>
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" style="border:0px"></canvas>
     </body>
     
     <script>
         var canvas = null;
         var context = null;
-        var x, y, running;
+        var x = 0, y = 0;
+        var button = null;
         
         setup = function(){
             canvas = document.getElementById("canvas");
-            context = canvas.getContext('2d');
+            context = canvas.getContext("2d");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            //canvas.addEventListener("mousedown", mouseDown, false);
-            //context.fillRect(20, 20, 200, 200);
-            /*var game = new GameEngine(canvas, 60);
-			game.startGame(context);*/
-			//setInterval(runGame, 100);
-
-            var button = new Button("Hello", 10, 10, 100, 100);
-            button.render(canvas);
-			
+            canvas.addEventListener("mousedown", event);
+            button = new Button(0, 0, 100, 100, "hello");
+            x = 0;
+            y = 0;
+        }
+         
+        update = function(){
+            x++;
+            y++;
+            
         }
         
-        /*mouseDown = function(event){
-            x = event.pageX;
-            y = event.pageY;
-            context.fillStyle="#FF0000";
-            context.fillRect(x, y, 200, 200);
+        render = function(){
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            button.render(context);
         }
-		
-		runGame = function(){
-			context.clearRect(0, 0, canvas.width, canvas.height);
-		}*/
-            
+        
+        run = function(){
+            setInterval(update, 1000);
+            setInterval(render, 1000 / 60);
+        }
+        
+        event = function(e){
+            mousex = e.pageX - 7;
+            mousey = e.pageY - 7;
+            console.log("x: " + e.clientX + " Y: " + e.clientY);
+            button.event(mousex, mousey);
+        }
+        
         setup();
+        run();
+        
     </script>
 </html>
 
