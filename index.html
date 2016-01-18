@@ -7,6 +7,7 @@
         <script src="button.js"></script>
         <script src="game.js"></script>
         <script src="numbers.js"></script>
+        <script src="tabs/work.js"></script>
     </head>
     <body>
         <canvas id="canvas" style="border:0px"></canvas>
@@ -19,18 +20,40 @@
         var error = 7;
         
         //Sets up the whole game
-        setup = function(){
+        setup = function()
+        {
             canvas = document.getElementById("canvas");
             context = canvas.getContext("2d");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            game = new Game(canvas, context);
+            game = new Game(canvas, context, error);
             //calls game.setup (setting up the rest of the game)
-            game.setup(canvas, context, error);
+            
+        }
+        
+        //The master render function
+        render = function()
+        {
+            game.render(context, canvas);
+        }
+        
+        //The master update function
+        update = function()
+        {
+            game.update(context, canvas);
+        }
+        
+        run = function()
+        {
+            //calls update every one seccond
+            setInterval(this.update, 1000 / 60);
+            //calls render 60 times a seccond
+            setInterval(this.render, 1000 / 60);
         }
         
         setup();
-        game.run();
+        game.setup(canvas, context);
+        run();
     </script>
 </html>
 

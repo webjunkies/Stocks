@@ -1,78 +1,100 @@
-function Game(canvas, context)
+function Game(error)
 {
     //Instance variables
     this.error = error;
-    var button = null;
+    
+    //object varables
+    var workButton = null;
+    var upgradesButton = null;
+    var workTab = null;
     var amount = 0;
-    var num = null;
+    var showWork = false;
     
     //The first thing that should get called
-    this.setup = function(canvas, context)
+    this.setup = function(canvas)
     {
-        //creates the "Player" and their data
-        num = new numbers(0, 0);
+        //creates the work page
+        workTab = new work(canvas.innerWidth, canvas.innerHeight, this.error);
         
         //Create all the Items on the screen
-        button = new Button(0, 300, 300, 80, "Button", this.error);
+        workButton = new Button(0, 300, 300, 80, "Work", this.error, context);
+        upgradesButton = new Button(0, 400, 300, 80, "Upgrades", this.error, context);
         
         //Check for the mouse events
         canvas.addEventListener("mousedown", eventMouseDown);
         canvas.addEventListener("mouseup", eventMouseUp);
         
         //start the numbers
-        num.setup(context);
-    }
-    
-    //Runs the "Game loop"
-    this.run = function()
-    {
-        //calls update every one seccond
-        setInterval(this.update, 1000);
-        //calls render 60 times a seccond
-        setInterval(this.render, 1000 / 60);
+        workButton.setup(context);
+        upgradesButton.setup(context);
+        workTab.setup(context);
     }
     
     //updates all the game mechanics and numbers
-    this.update = function()
+    this.update = function(context, canvas)
     {
-        button.update();
-        amount++;
+        workButton.update();
+        upgradesButton.update();
     }
     
     //renders the screen(60 times a seccond)
     //or said as 60 frames per seccond
-    this.render = function()
+    this.render = function(context, canvas)
     {
         //"clears" the screen for the next frame
         context.clearRect(0, 0, canvas.width, canvas.height);
         
         //call all render functions here
-        button.render(context);
+        if(showWork)
+        {
+            workTab.render(context);
+        }
+        workButton.render();
+        upgradesButton.render();
+        
         context.fillStyle = "#000000";
         context.font="40px Georgia";
         context.fillText(amount, 30, 30);
     }
     
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     //called from the mouse being clicked
     eventMouseDown = function(e)
     {
-        mousex = e.pageX - error;
-        mousey = e.pageY - error;
+        var mousex = e.pageX - error;
+        var mousey = e.pageY - error;
         // just shows you where the mouse click is in the console
-        console.log("x: " + e.clientX + " Y: " + e.clientY);
+        console.log("x: " + e.pageX + " Y: " + e.pageY);
         
         //call all objects that need a mouse event down
-        button.eventMouseDown(mousex, mousey, this);
+        workTab.eventMouseDown(e);
+        workButton.eventMouseDown(e);
+        upgradesButton.eventMouseDown(e);
     }
     
     //called from the mouse being released
     eventMouseUp = function(e)
     {
-        mousex = e.pageX - error;
-        mousey = e.pageY - error;
-        console.log("x: " + e.clientX + " Y: " + e.clientY);
+        var mousex = e.pageX - error;
+        var mousey = e.pageY - error;
+        //console.log("x: " + e.clientX + " Y: " + e.clientY);
         
         //call all objects that need a mouse event up
-        button.eventMouseUp(mousex, mousey, this);
+        workTab.eventMouseUp(e);
+        workButton.eventMouseUp(e);
+        upgradesButton.eventMouseUp(e);
+    }
+    
+    thisisamethod = function(){
+        amount++;
+    }
+    
+    showWorkPage = function(bool){
+        showWork = bool;
+    }
+    
+    getShouldShowWork = function(){
+        return showWork;
     }
 }
