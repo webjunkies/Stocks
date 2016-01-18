@@ -4,16 +4,23 @@ function Game(canvas, context)
     this.error = error;
     var button = null;
     var amount = 0;
+    var num = null;
     
     //The first thing that should get called
     this.setup = function(canvas, context)
     {
+        //creates the "Player" and their data
+        num = new numbers(0, 0);
+        
         //Create all the Items on the screen
         button = new Button(0, 300, 300, 80, "Button", this.error);
         
         //Check for the mouse events
         canvas.addEventListener("mousedown", eventMouseDown);
         canvas.addEventListener("mouseup", eventMouseUp);
+        
+        //start the numbers
+        num.setup(context);
     }
     
     //Runs the "Game loop"
