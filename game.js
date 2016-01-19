@@ -11,7 +11,7 @@ function Game(error)
     var showWork = false;
     
     //The first thing that should get called
-    this.setup = function(canvas)
+    this.setup = function(context, canvas)
     {
         //creates the work page
         workTab = new work(canvas.innerWidth, canvas.innerHeight, this.error);
@@ -25,9 +25,9 @@ function Game(error)
         canvas.addEventListener("mouseup", eventMouseUp);
         
         //start the numbers
-        workButton.setup(context);
-        upgradesButton.setup(context);
-        workTab.setup(context);
+        workButton.setup(context, canvas);
+        upgradesButton.setup(context, canvas);
+        workTab.setup(context, canvas);
     }
     
     //updates all the game mechanics and numbers

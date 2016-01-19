@@ -1,3 +1,11 @@
+/*
+Things to do:
+    decide how the context and canvas will be given to elements
+        pass through parameters or as a object variable.
+    create something like a button but just for the work tab 
+        that will act like a animated item.
+*/
+
 function Button(xcor, ycor, wid, hei, tex, err, cont){
     this.context = cont;
     this.x = xcor;
@@ -9,7 +17,7 @@ function Button(xcor, ycor, wid, hei, tex, err, cont){
     this.error = err;
     
     //first thing called to create the button object
-    this.setup = function(){}
+    this.setup = function(context, canvas){}
     
     //the update function for the button object
     this.update = function(){}

@@ -6,9 +6,9 @@ function numbers(startAmount, startFactor)
     this.netWorth = 0;
     this.factor = 0;
     
-    this.setup = function(context){}
+    this.setup = function(context, canvas){}
     
-    this.update = function(context){}
+    this.update = function(context, canvas){}
     
-    this.render = function(context){}
+    this.render = function(context, canvas){}
 }

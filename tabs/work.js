@@ -5,7 +5,7 @@ function work(width, height, error)
     this.error = error;
     var hotDogStandButton = null;
     
-    this.setup = function(context)
+    this.setup = function(context, canvas)
     {
         console.log(context);
         hotDogStandButton = new Button(400, 300, 300, 80, "Hot Dog Stand", this.error, context);
