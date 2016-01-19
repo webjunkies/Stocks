@@ -17,11 +17,8 @@ function Button(xcor, ycor, wid, hei, tex, err, cont){
     this.error = err;
     
     //first thing called to create the button object
-<<<<<<< HEAD
     this.setup = function(context, canvas){}
-=======
     this.setup = function(){};
->>>>>>> origin/master
     
     //the update function for the button object
     this.update = function(){};
