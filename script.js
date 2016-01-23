@@ -11,6 +11,8 @@ var menuButtons = [];
 var workButtons = [];
 var companyButtons = [];
 var typeBrowser = true;
+var hasWaiterPerchased = false;
+var hasMusicianPerchased = false;
 
 function setup(c)
 {
@@ -211,6 +213,30 @@ function game()
 		optionsButton.perchased = true;
 		companyButton.perchased = true;
 		achievementsButton.perchased = true;
+		
+		for(x = 0; x < workButtons.length; x++)
+		{
+			if(!companyButtons[x].perchased)
+			{
+				workButtons[x].canBeClicked = true;
+			}
+		}
+		
+		for(x = 0; x < companyButtons.length; x++)
+		{
+			if(!companyButtons[x].perchased)
+			{
+				companyButtons[x].canBeClicked = false;
+			}
+		}
+		
+		for(x = 0; x < menuButtons.length; x++)
+		{
+			if(!menuButtons[x].perchased)
+			{
+				menuButtons[x].canBeClicked = false;
+			}
+		}
 	};
 	
 	this.render = function()
@@ -225,7 +251,6 @@ function game()
 	this.update = function()
 	{
 		//call all other game update functions HERE!
-		
 	};
 }
 
@@ -448,7 +473,7 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked, cost)
 	this.fillStyleUnclicked = fill;
 	this.fillStyleClicked = fillClicked;
 	this.perchased = false;
-	this.perchaseCost = cost
+	this.perchaseCost = cost;
 	
 	this.setup = function(){};
 	
@@ -480,7 +505,7 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked, cost)
 			var textY = this.y + (this.height/2) + (this.height / 9);
 			
 			this.text = text;
-			if(!this.perchased)
+			if(!this.perchased || this.perchaseCost > 0)
 			{
 				this.text += " $" + this.perchaseCost;
 			}
@@ -508,33 +533,33 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked, cost)
 				switch(this.id)
 				{
 					case "hot_dog_stand": 
-							this.fillStyle = this.fillStyleClicked;
-							if(this.perchased){}
-							else if(amount >= this.perchaseCost)
+							if(amount >= this.perchaseCost)
 							{
+								this.fillStyle = this.fillStyleClicked;
 								amount -= this.perchaseCost;
 								this.perchased = true;
-								amountFactor = .10;
+								amountFactor += (.25 / 25);
+								this.perchaseCost = this.perchaseCost * 2;
 							}
 						break;
 					case "coffee_shop": 
-							this.fillStyle = this.fillStyleClicked;
-							if(this.perchased){}
-							else if(amount >= this.perchaseCost)
+							if(amount >= this.perchaseCost && hasMusicianPerchased)
 							{
+								this.fillStyle = this.fillStyleClicked;
 								amount -= this.perchaseCost;
 								this.perchased = true;
-								amountFactor = 1;
+								amountFactor += (1.00 / 25);
+								this.perchaseCost = this.perchaseCost * 2;
 							}
 						break;
 					case "restaurant": 
-							this.fillStyle = this.fillStyleClicked;
-							if(this.perchased){}
-							else if(amount >= this.perchaseCost)
+							if(amount >= this.perchaseCost && hasWaiterPerchased)
 							{
+								this.fillStyle = this.fillStyleClicked;
 								amount -= this.perchaseCost;
 								this.perchased = true;
-								amountFactor = 2;
+								amountFactor += (2.00 / 25);
+								this.perchaseCost = this.perchaseCost * 2;
 							}
 						break;
 					case "musician": 
@@ -547,6 +572,8 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked, cost)
 							{
 								amount -= this.perchaseCost;
 								this.perchased = true;
+								this.perchaseCost = 0.0;
+								hasMusicianPerchased = true;
 							}
 						break;
 					case "hot_dog_vendor": 
@@ -559,6 +586,7 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked, cost)
 							{
 								amount -= this.perchaseCost;
 								this.perchased = true;
+								this.perchaseCost = 0.0;
 							}
 						break;
 					case "waiter": 
@@ -571,6 +599,8 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked, cost)
 							{
 								amount -= this.perchaseCost;
 								this.perchased = true;
+								this.perchaseCost = 0.0;
+								hasWaiterPerchased = true;
 							}
 						break;
 					default : break; 
