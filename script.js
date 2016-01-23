@@ -69,12 +69,14 @@ function render()
 		//console.log("not chrome");
 	}*/
 	
-	update();context.clearRect(0, 0, canvas.width, canvas.height);
+	update();
+	context.clearRect(0, 0, canvas.width, canvas.height);
 	game.render();
 }
 
 function update()
 {
+	amount += amountFactor;
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	game.update();
@@ -162,14 +164,14 @@ function game()
 		investorsButton = new staticButton((column * 4) - 10, row * 4, column - 5, row - 5, "investors", "Investors", "#ff9933", "#e67300");
 		achievementsButton = new staticButton((column * 4) - 10, row * 5, column - 5, row - 5, "achievements", "Achievements", "#ff9933", "#e67300");
 		
-		hotDogStandButton = new dynamicButton((column * 1), row * 2, column - 5, row - 5, "hot_dog_stand", "Hot Dog Stand", "#1a8bff","#0072e6");
-		restaurantButton = new dynamicButton((column * 1), row * 3, column - 5, row - 5, "restaurant", "Restaurant", "#1a8bff", "#0072e6");
-		coffeeShopButton = new dynamicButton((column * 1), row * 4, column - 5, row - 5, "coffee_shop", "Coffee Shop", "#1a8bff", "#0072e6");
+		hotDogStandButton = new dynamicButton((column * 1), row * 2, column - 5, row - 5, "hot_dog_stand", "Hot Dog Stand", "#1a8bff","#0072e6", 50.00);
+		restaurantButton = new dynamicButton((column * 1), row * 3, column - 5, row - 5, "restaurant", "Restaurant", "#1a8bff", "#0072e6", 500.00);
+		coffeeShopButton = new dynamicButton((column * 1), row * 4, column - 5, row - 5, "coffee_shop", "Coffee Shop", "#1a8bff", "#0072e6", 1000.00);
 		
 		
-		hotDogVendorButton = new dynamicButton((column * 1), row * 2, column - 5, row - 5, "hot_dog_vendor", "Hot Dog Vendor", "#bf00ff", "#9900cc");
-		waiterButton = new dynamicButton((column * 1), row * 3, column - 5, row - 5, "waiter", "Waiter", "#bf00ff", "#9900cc");
-		musicianButton = new dynamicButton((column * 1), row * 4, column - 5, row - 5, "musician", "Musician", "#bf00ff", "#9900cc");
+		hotDogVendorButton = new dynamicButton((column * 1), row * 2, column - 5, row - 5, "hot_dog_vendor", "Hot Dog Vendor", "#bf00ff", "#9900cc", 0.00);
+		waiterButton = new dynamicButton((column * 1), row * 3, column - 5, row - 5, "waiter", "Waiter", "#bf00ff", "#9900cc", 20.00);
+		musicianButton = new dynamicButton((column * 1), row * 4, column - 5, row - 5, "musician", "Musician", "#bf00ff", "#9900cc", 50.00);
 		
 		//add the buttons to the array
 		menuButtons.push(workButton);
@@ -272,6 +274,13 @@ function staticButton(x, y, width, height, id, text, fill, fillClicked)
 			var textSize = context.measureText(this.text);
 			var textX = this.x + (this.width / 2) - (textSize.width / 2);
 			var textY = this.y + (this.height/2) + (this.height / 9);
+			
+
+			this.text = text;
+			if(!this.perchased)
+			{
+				this.text += " " + this.perchaseCost;
+			}
 			
 			//render the Text over the button
 			context.fillText(this.text, textX, textY);
@@ -425,7 +434,7 @@ function staticButton(x, y, width, height, id, text, fill, fillClicked)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //THE DYNAMIC AND DISPLAY BUTTON FUNCTION
-function dynamicButton(x, y, width, height, id, text, fill, fillClicked)
+function dynamicButton(x, y, width, height, id, text, fill, fillClicked, cost)
 {
 	this.id = id;
 	this.x = x;
@@ -439,7 +448,7 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked)
 	this.fillStyleUnclicked = fill;
 	this.fillStyleClicked = fillClicked;
 	this.perchased = false;
-	this.perchaseCost = 20.00;
+	this.perchaseCost = cost
 	
 	this.setup = function(){};
 	
@@ -470,6 +479,12 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked)
 			var textX = this.x + (this.width / 2) - (textSize.width / 2);
 			var textY = this.y + (this.height/2) + (this.height / 9);
 			
+			this.text = text;
+			if(!this.perchased)
+			{
+				this.text += " $" + this.perchaseCost;
+			}
+
 			//render the Text over the button
 			context.fillText(this.text, textX, textY);
 		}
@@ -494,12 +509,33 @@ function dynamicButton(x, y, width, height, id, text, fill, fillClicked)
 				{
 					case "hot_dog_stand": 
 							this.fillStyle = this.fillStyleClicked;
+							if(this.perchased){}
+							else if(amount >= this.perchaseCost)
+							{
+								amount -= this.perchaseCost;
+								this.perchased = true;
+								amountFactor = .10;
+							}
 						break;
 					case "coffee_shop": 
 							this.fillStyle = this.fillStyleClicked;
+							if(this.perchased){}
+							else if(amount >= this.perchaseCost)
+							{
+								amount -= this.perchaseCost;
+								this.perchased = true;
+								amountFactor = 1;
+							}
 						break;
 					case "restaurant": 
 							this.fillStyle = this.fillStyleClicked;
+							if(this.perchased){}
+							else if(amount >= this.perchaseCost)
+							{
+								amount -= this.perchaseCost;
+								this.perchased = true;
+								amountFactor = 2;
+							}
 						break;
 					case "musician": 
 							this.fillStyle = this.fillStyleClicked;
@@ -555,7 +591,8 @@ function renderAmounts()
 {
 	context.fillStyle = "#000000";
 	context.font="40px Georgia";
-	context.fillText("$" + amount, column, row);
+	var newAmount = amount.toFixed(2);
+	context.fillText("$" + newAmount, column, row);
 	context.fillText("Net Worth: $" + netWorth, column * 3, row);
 }
 
